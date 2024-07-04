@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://2ye61k6rqvkt"]
+
+[ext_resource type="Script" path="res://addons/godot_crt/Scripts/crt_effect_controls.gd" id="1_q0jwk"]
+[ext_resource type="PackedScene" uid="uid://jr5dpftmq1na" path="res://addons/godot_crt/Examples/scene1.tscn" id="2_jf6ve"]
+[ext_resource type="Script" path="res://addons/godot_crt/Scripts/crt_effect.gd" id="3_27yij"]
+[ext_resource type="Script" path="res://addons/godot_crt/Scripts/crt_screen.gd" id="4_ty1i4"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_e0nnu"]
+viewport_path = NodePath("main")
+
+[node name="Demo1" type="Node3D" node_paths=PackedStringArray("crt_effect", "randomize_sync_btn", "signal_noise_slider", "enable_hsync_errors", "enable_vsync_errors", "s_video")]
+script = ExtResource("1_q0jwk")
+crt_effect = NodePath("CRTEffect")
+randomize_sync_btn = NodePath("CanvasLayer/Button")
+signal_noise_slider = NodePath("CanvasLayer/HSlider")
+enable_hsync_errors = NodePath("CanvasLayer/CheckBox")
+enable_vsync_errors = NodePath("CanvasLayer/CheckBox2")
+s_video = NodePath("CanvasLayer/CheckBox3")
+
+[node name="main" type="SubViewport" parent="."]
+size = Vector2i(320, 240)
+
+[node name="Test" parent="main" instance=ExtResource("2_jf6ve")]
+
+[node name="CRTEffect" type="Node2D" parent="."]
+script = ExtResource("3_27yij")
+input_texture = SubResource("ViewportTexture_e0nnu")
+degrade_hsync = true
+degrade_vsync = true
+colorburst_offset_per_scanline = 0.333
+
+[node name="CRTScreen" type="Node2D" parent="."]
+script = ExtResource("4_ty1i4")
+mask_repeat = Vector2(106.667, 60)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Randomize Sync"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_top = 34.0
+offset_right = 95.0
+offset_bottom = 57.0
+text = "Signal Noise"
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer"]
+offset_left = 99.0
+offset_top = 38.0
+offset_right = 233.0
+offset_bottom = 54.0
+
+[node name="CheckBox" type="CheckBox" parent="CanvasLayer"]
+offset_top = 58.0
+offset_right = 184.0
+offset_bottom = 89.0
+text = "Enable HSync Errors"
+
+[node name="CheckBox2" type="CheckBox" parent="CanvasLayer"]
+offset_top = 87.0
+offset_right = 184.0
+offset_bottom = 118.0
+text = "Enable VSync Errors"
+
+[node name="CheckBox3" type="CheckBox" parent="CanvasLayer"]
+offset_top = 115.0
+offset_right = 184.0
+offset_bottom = 146.0
+text = "S-Video"

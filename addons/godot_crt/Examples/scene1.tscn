@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://jr5dpftmq1na"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_muka0"]
+
+[sub_resource type="Sky" id="Sky_duvoe"]
+sky_material = SubResource("ProceduralSkyMaterial_muka0")
+
+[sub_resource type="Environment" id="Environment_oq7mp"]
+background_mode = 2
+sky = SubResource("Sky_duvoe")
+
+[sub_resource type="BoxMesh" id="BoxMesh_gmynh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gfp8u"]
+albedo_color = Color(1, 0, 0.537255, 1)
+
+[node name="Test" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.899527, 0.436865, 0, -0.436865, 0.899527, 0, 1.49624, 2.74732)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_oq7mp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, -0.353553, 0.866025, -0.353553, 0.612372, 0.5, 0.612372, 0, 0, 0)
+mesh = SubResource("BoxMesh_gmynh")
+surface_material_override/0 = SubResource("StandardMaterial3D_gfp8u")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.410114, 0.912034, 0, -0.912034, 0.410114, 0, 2.73126, -2.09238)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 114.0
+offset_bottom = 39.0
+text = "Hello, world!"
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+modulate = Color(1, 0, 0, 1)
+offset_left = 16.0
+offset_top = 32.0
+offset_right = 114.0
+offset_bottom = 55.0
+text = "Hello, world!"
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+modulate = Color(0, 1, 0, 1)
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 114.0
+offset_bottom = 71.0
+text = "Hello, world!"
+
+[node name="Label4" type="Label" parent="CanvasLayer"]
+modulate = Color(0, 0, 1, 1)
+offset_left = 16.0
+offset_top = 64.0
+offset_right = 114.0
+offset_bottom = 87.0
+text = "Hello, world!"
